@@ -188,7 +188,7 @@
 <body>
 
 <div id="infog-nav">
-  <select id="infog-select">
+  <select id="infog-select" autocomplete="off">
     <option value="/distribuidor-de-insumos/">Distribuidor de Insumos</option>
     <option value="/loja-agropecuaria/">Loja Agropecuária</option>
     <option value="/originacao-comercio-de-graos/">Originação &amp; Comércio de Grãos</option>
@@ -328,18 +328,17 @@
     });
   })();
 
-  // Nav select
   (function () {
     var sel = document.getElementById('infog-select');
     var path = window.location.pathname;
-      for (var i = 0; i < sel.options.length; i++) {
-        var folder = sel.options[i].value.replace(/\//g, '');
-        if (path.indexOf('/' + folder + '/') !== -1) { sel.selectedIndex = i; break; }
-      }
-      sel.addEventListener('change', function () {
-        var folder = sel.value.replace(/\//g, '');
-        window.location.href = '../' + folder + '/';
-      });
+    for (var i = 0; i < sel.options.length; i++) {
+      var folder = sel.options[i].value.replace(/\//g, '');
+      if (path.indexOf('/' + folder + '/') !== -1) { sel.selectedIndex = i; break; }
+    }
+    sel.addEventListener('change', function () {
+      var folder = sel.value.replace(/\//g, '');
+      window.location.href = '../' + folder + '/';
+    });
   })();
 </script>
 
