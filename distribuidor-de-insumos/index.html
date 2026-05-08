@@ -38,6 +38,7 @@
 
     /* bg-lines: reveal radial do centro para fora */
     .layer[data-id="bg"] {
+      left: 447px; top: 317px; width: 1042px; height: 548px;
       transform: none;
       clip-path: circle(0% at 50% 50%);
       transition: opacity 0.4s ease-out, clip-path 0.9s cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,10 +48,7 @@
       clip-path: circle(150% at 50% 50%);
     }
 
-    /* bg-lines: posição do grupo no frame (447, 317, 1042×548) */
-    .layer[data-id="bg"]       { left: 447px; top: 317px; width: 1042px; height: 548px; }
-
-    /* Plataformas — coordenadas absolutas Figma 1920×1080 */
+    /* Plataformas */
     .layer[data-id="parcerias"]   { left: 431px;  top:  56px;  width: 534px; height: 378px; }
     .layer[data-id="credito"]     { left: 758px;  top: 269px;  width: 439px; height: 304px; }
     .layer[data-id="estoque"]     { left: 1091px; top: 337px;  width: 595px; height: 389px; }
@@ -66,7 +64,6 @@
       z-index: 20;
     }
 
-    /* Mesmos bounds das layers */
     .hotspot[data-id="parcerias"]   { left: 431px;  top:  56px;  width: 534px; height: 378px; }
     .hotspot[data-id="credito"]     { left: 758px;  top: 269px;  width: 439px; height: 304px; }
     .hotspot[data-id="estoque"]     { left: 1091px; top: 337px;  width: 595px; height: 389px; }
@@ -84,44 +81,42 @@
     }
     .hotspot:hover::before { background: rgba(0, 178, 50, 0.08); }
 
-    /* ── Tooltips ── */
-    .tooltip {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
+    /* ── Tooltip global (fora do container escalado, tamanho normal) ── */
+    #tooltip {
+      position: fixed;
       background: #fff;
       border-left: 4px solid var(--green);
       border-radius: 8px;
       box-shadow: 0 8px 32px rgba(0,0,0,.18);
       padding: 16px 20px;
-      min-width: 220px;
-      max-width: 280px;
-      white-space: normal;
+      width: 240px;
       pointer-events: none;
       opacity: 0;
+      transform: translateY(6px);
       transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 100;
+      z-index: 1000;
     }
-
-    .tooltip-top    { bottom: calc(100% + 12px); }
-    .tooltip-top { top:    calc(100% + 12px); }
-
-    .tooltip::after {
+    #tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* seta — direção definida via data-dir pelo JS */
+    #tooltip::after {
       content: '';
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       border: 8px solid transparent;
     }
-    .tooltip-top::after    { top: 100%;    border-top-color: #fff; }
-    .tooltip-top::after { bottom: 100%; border-bottom-color: #fff; }
-
-    .hotspot:hover .tooltip {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    #tooltip[data-dir="above"]::after, #tooltip:not([data-dir])::after {
+      top: 100%;
+      border-top-color: #fff;
     }
-
-    .tooltip h4 {
+    #tooltip[data-dir="below"]::after {
+      bottom: 100%;
+      border-bottom-color: #fff;
+    }
+    #tooltip h4 {
       font-family: 'Halcom', 'Arial Black', 'Arial Bold', sans-serif;
       font-weight: 900;
       font-size: 13px;
@@ -131,8 +126,8 @@
       margin-bottom: 10px;
       line-height: 1.3;
     }
-    .tooltip ul { list-style: none; padding: 0; }
-    .tooltip ul li {
+    #tooltip ul { list-style: none; padding: 0; }
+    #tooltip ul li {
       font-family: 'Halcom', Arial, sans-serif;
       font-size: 12px;
       color: var(--text);
@@ -141,8 +136,8 @@
       position: relative;
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-    .tooltip ul li:last-child { border-bottom: none; }
-    .tooltip ul li::before {
+    #tooltip ul li:last-child { border-bottom: none; }
+    #tooltip ul li::before {
       content: '';
       position: absolute;
       left: 0; top: 50%;
@@ -155,15 +150,19 @@
 </head>
 <body>
 
+<!-- Tooltip global — fora do container escalado -->
+<div id="tooltip">
+  <h4 id="tooltip-title"></h4>
+  <ul id="tooltip-list"></ul>
+</div>
+
 <div id="scale-container">
 <div id="infografico">
 
-  <!-- BG + linhas (aparece primeiro) -->
   <div class="layer" data-id="bg" data-delay="0">
     <img src="assets2/bg-lines.png" alt="">
   </div>
 
-  <!-- Plataformas -->
   <div class="layer" data-id="parcerias"   data-delay="200"><img src="assets2/parcerias-portfolio.png" alt=""></div>
   <div class="layer" data-id="credito"     data-delay="400"><img src="assets2/credito.png" alt=""></div>
   <div class="layer" data-id="estoque"     data-delay="600"><img src="assets2/estoque-logistica.png" alt=""></div>
@@ -171,89 +170,55 @@
   <div class="layer" data-id="venda"       data-delay="1000"><img src="assets2/venda-consultiva.png" alt=""></div>
   <div class="layer" data-id="performance" data-delay="1200"><img src="assets2/perfomance.png" alt=""></div>
 
-  <!-- Hotspots -->
-
-  <!-- TOOLTIP: Parcerias & Portifólio -->
-  <div class="hotspot" data-id="parcerias">
-    <div class="tooltip tooltip-top">
-      <h4>Parcerias &amp; Portifólio</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Parcerias & Portifólio -->
+  <div class="hotspot" data-id="parcerias"
+    data-title="Parcerias &amp; Portifólio"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-  <!-- TOOLTIP: Crédito -->
-  <div class="hotspot" data-id="credito">
-    <div class="tooltip tooltip-top">
-      <h4>Crédito</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Crédito -->
+  <div class="hotspot" data-id="credito"
+    data-title="Crédito"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-  <!-- TOOLTIP: Estoque & Logística -->
-  <div class="hotspot" data-id="estoque">
-    <div class="tooltip tooltip-top">
-      <h4>Estoque &amp; Logística</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Estoque & Logística -->
+  <div class="hotspot" data-id="estoque"
+    data-title="Estoque &amp; Logística"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-  <!-- TOOLTIP: Acesso ao Produtor -->
-  <div class="hotspot" data-id="acesso">
-    <div class="tooltip tooltip-top">
-      <h4>Acesso ao Produtor</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Acesso ao Produtor -->
+  <div class="hotspot" data-id="acesso"
+    data-title="Acesso ao Produtor"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-  <!-- TOOLTIP: Venda Consultiva -->
-  <div class="hotspot" data-id="venda">
-    <div class="tooltip tooltip-top">
-      <h4>Venda Consultiva</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Venda Consultiva -->
+  <div class="hotspot" data-id="venda"
+    data-title="Venda Consultiva"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-  <!-- TOOLTIP: Performance & Resultados -->
-  <div class="hotspot" data-id="performance">
-    <div class="tooltip tooltip-top">
-      <h4>Performance &amp; Resultados</h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>Lorem ipsum dolor sit amet</li>
-      </ul>
-    </div>
+  <!-- HOTSPOT: Performance & Resultados -->
+  <div class="hotspot" data-id="performance"
+    data-title="Performance &amp; Resultados"
+    data-items="Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet|Lorem ipsum dolor sit amet">
   </div>
 
-</div><!-- #infografico -->
-</div><!-- #scale-container -->
+</div>
+</div>
 
 <script>
   (function () {
     var container = document.getElementById('scale-container');
     var wrapper   = document.getElementById('infografico');
     var layers    = wrapper.querySelectorAll('.layer');
+    var tooltip   = document.getElementById('tooltip');
+    var ttTitle   = document.getElementById('tooltip-title');
+    var ttList    = document.getElementById('tooltip-list');
 
+    /* ── Escala responsiva ── */
     function applyScale() {
       var scale = window.innerWidth / 1920;
       wrapper.style.transform = 'scale(' + scale + ')';
@@ -262,18 +227,55 @@
     window.addEventListener('resize', applyScale);
     applyScale();
 
+    /* ── Animação de entrada ── */
     function animateIn() {
       layers.forEach(function (layer) {
         var delay = parseInt(layer.dataset.delay || 0, 10) + 200;
         setTimeout(function () { layer.classList.add('visible'); }, delay);
       });
     }
-
     if (document.readyState === 'complete') {
       setTimeout(animateIn, 80);
     } else {
       window.addEventListener('load', function () { setTimeout(animateIn, 80); });
     }
+
+    /* ── Tooltip via JS — posicionado em coordenadas de tela reais ── */
+    wrapper.querySelectorAll('.hotspot').forEach(function (hs) {
+      hs.addEventListener('mouseenter', function () {
+        var rect = hs.getBoundingClientRect();
+
+        ttTitle.innerHTML = hs.dataset.title;
+        ttList.innerHTML  = '';
+        hs.dataset.items.split('|').forEach(function (item) {
+          var li = document.createElement('li');
+          li.textContent = item;
+          ttList.appendChild(li);
+        });
+
+        tooltip.classList.add('visible');
+
+        var cx     = rect.left + rect.width / 2;
+        var ttH    = tooltip.offsetHeight;
+        var ttW    = tooltip.offsetWidth;
+        var above  = rect.top - ttH - 14;
+        var below  = rect.bottom + 14;
+        var top    = above >= 8 ? above : below;
+
+        // seta aponta para baixo (acima) ou para cima (abaixo)
+        tooltip.dataset.dir = above >= 8 ? 'above' : 'below';
+
+        var left = cx - ttW / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - ttW - 8));
+
+        tooltip.style.left = left + 'px';
+        tooltip.style.top  = top  + 'px';
+      });
+
+      hs.addEventListener('mouseleave', function () {
+        tooltip.classList.remove('visible');
+      });
+    });
   })();
 </script>
 
