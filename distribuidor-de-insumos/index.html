@@ -13,9 +13,9 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { background: #f5f5f5; overflow-x: hidden; }
+    html, body { background: #f5f5f5; overflow: hidden; height: 100%; }
 
-    #scale-container { width: 100%; }
+    #scale-container { width: 100%; overflow: hidden; }
 
     #infografico {
       position: relative;
@@ -267,9 +267,11 @@
 
     /* ── Escala responsiva ── */
     function applyScale() {
-      var scale = window.innerWidth / 1920;
-      wrapper.style.transform = 'scale(' + scale + ')';
-      container.style.height  = Math.round(1080 * scale) + 'px';
+      var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      var left  = Math.round((window.innerWidth - 1920 * scale) / 2);
+      wrapper.style.transform  = 'scale(' + scale + ')';
+      wrapper.style.marginLeft = left + 'px';
+      container.style.height   = Math.round(1080 * scale) + 'px';
     }
     window.addEventListener('resize', applyScale);
     applyScale();
