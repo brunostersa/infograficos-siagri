@@ -36,6 +36,18 @@
     .layer.visible { opacity: 1; transform: translateY(0); }
     .layer img { display: block; width: 100%; height: 100%; }
 
+    /* bg-lines: reveal radial do centro para fora */
+    .layer[data-id="bg"] {
+      left: 279px; top: 259px; width: 1335px; height: 713px;
+      transform: none;
+      clip-path: circle(0% at 50% 50%);
+      transition: opacity 0.4s ease-out, clip-path 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .layer[data-id="bg"].visible {
+      transform: none;
+      clip-path: circle(150% at 50% 50%);
+    }
+
     /* Coordenadas absolutas Figma 1920×1080 */
     .layer[data-id="loja-venda"]            { left: 650px;  top:  28px;  width: 491px; height: 321px; }
     .layer[data-id="parcerias-portfolio"]   { left: 175px;  top: 309px;  width: 468px; height: 247px; }
@@ -144,9 +156,11 @@
 <div id="scale-container">
 <div id="infografico">
 
-  <div class="layer" data-id="loja-venda"             data-delay="0">   <img src="loja-venda.png" alt=""></div>
-  <div class="layer" data-id="parcerias-portfolio"    data-delay="200"> <img src="parcerias-portfolio.png" alt=""></div>
-  <div class="layer" data-id="credito-rotativo"       data-delay="400"> <img src="credito-rotativo.png" alt=""></div>
+  <div class="layer" data-id="bg" data-delay="0"><img src="bg-lines.png" alt=""></div>
+
+  <div class="layer" data-id="loja-venda"             data-delay="200">   <img src="loja-venda.png" alt=""></div>
+  <div class="layer" data-id="parcerias-portfolio"    data-delay="400"> <img src="parcerias-portfolio.png" alt=""></div>
+  <div class="layer" data-id="credito-rotativo"       data-delay="600"> <img src="credito-rotativo.png" alt=""></div>
   <div class="layer" data-id="performance-resultados" data-delay="600"> <img src="performance-resultados.png" alt=""></div>
   <div class="layer" data-id="venda-transacional"     data-delay="800"> <img src="venda transacional.png" alt=""></div>
   <div class="layer" data-id="acertos"                data-delay="1000"><img src="acertos.png" alt=""></div>
