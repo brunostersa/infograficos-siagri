@@ -258,8 +258,9 @@
         var cx     = rect.left + rect.width / 2;
         var ttH    = tooltip.offsetHeight;
         var ttW    = tooltip.offsetWidth;
-        var above  = rect.top - ttH - 14;
-        var below  = rect.bottom + 14;
+        var midY   = rect.top + rect.height * 0.45;
+        var above  = midY - ttH - 14;
+        var below  = midY + 14;
         var top    = above >= 8 ? above : below;
 
         // seta aponta para baixo (acima) ou para cima (abaixo)
