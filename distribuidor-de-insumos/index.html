@@ -3,116 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Infográfico 01 — Distribuidor de Insumos</title>
+  <title>Distribuidor de Insumos</title>
   <style>
     :root {
       --green: #00b232;
       --lime:  #a5c715;
       --text:  #2a2b2b;
-      --tooltip-bg: #ffffff;
-      --tooltip-border: var(--green);
-      --shadow: 0 8px 32px rgba(0,0,0,.18);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      background: #f4f4f4;
-      overflow-x: hidden;
-    }
+    html, body { background: #f5f5f5; overflow-x: hidden; }
 
-    /* ── Scale container: collapses to the visually rendered height ── */
-    #scale-container {
-      width: 100%;
-      /* height is set by JS to match the scaled wrapper */
-    }
+    #scale-container { width: 100%; }
 
-    /* ── Wrapper: fixed 1920×1080, scaled down via transform ── */
     #infografico {
       position: relative;
       width: 1920px;
       height: 1080px;
       background: #f5f5f5;
       transform-origin: top left;
-      /* transform: scale(X) — set by JS on load and resize */
     }
 
-    /* ── Platform layers ── */
-    .platform-layer {
+    /* ── Camadas ── */
+    .layer {
       position: absolute;
-      background-image: url(assets/infografico-01.png);
-      background-size: 1920px 1080px;
-      background-repeat: no-repeat;
-      z-index: 1;
-
+      pointer-events: none;
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(20px);
       transition: opacity 0.55s ease-out, transform 0.55s ease-out;
     }
+    .layer.visible { opacity: 1; transform: translateY(0); }
+    .layer img { display: block; width: 100%; height: 100%; }
 
-    .platform-layer.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* bg-lines: posição do grupo no frame (447, 317, 1042×548) */
+    .layer[data-id="bg"]       { left: 447px; top: 317px; width: 1042px; height: 548px; }
 
-    /* background-position = -(left_px) -(top_px) in the 1920×1080 coordinate space */
-
-    .platform-layer[data-id="parcerias"] {
-      left: 22.4%; top:  5.2%; width: 27.2%; height: 35.0%;
-      background-position: -431px -56px;
-    }
-    .platform-layer[data-id="credito"] {
-      left: 39.5%; top: 24.9%; width: 22.9%; height: 28.1%;
-      background-position: -758px -269px;
-    }
-    .platform-layer[data-id="estoque"] {
-      left: 56.8%; top: 31.2%; width: 29.0%; height: 35.0%;
-      background-position: -1091px -337px;
-    }
-    .platform-layer[data-id="acesso"] {
-      left: 10.9%; top: 42.6%; width: 29.0%; height: 23.3%;
-      background-position: -209px -460px;
-    }
-    .platform-layer[data-id="venda"] {
-      left: 27.0%; top: 60.2%; width: 29.5%; height: 29.5%;
-      background-position: -519px -650px;
-    }
-    .platform-layer[data-id="performance"] {
-      left: 59.7%; top: 58.5%; width: 33.4%; height: 40.0%;
-      background-position: -1146px -632px;
-    }
-    .platform-layer[data-id="linhas"] {
-      left: 23.3%; top: 29.4%; width: 54.3%; height: 50.7%;
-      background-position: -447px -317px;
-    }
+    /* Plataformas — coordenadas absolutas Figma 1920×1080 */
+    .layer[data-id="parcerias"]   { left: 431px;  top:  56px;  width: 534px; height: 378px; }
+    .layer[data-id="credito"]     { left: 758px;  top: 269px;  width: 439px; height: 304px; }
+    .layer[data-id="estoque"]     { left: 1091px; top: 337px;  width: 595px; height: 389px; }
+    .layer[data-id="acesso"]      { left: 209px;  top: 460px;  width: 557px; height: 252px; }
+    .layer[data-id="venda"]       { left: 519px;  top: 650px;  width: 566px; height: 391px; }
+    .layer[data-id="performance"] { left: 1146px; top: 632px;  width: 658px; height: 433px; }
 
     /* ── Hotspots ── */
     .hotspot {
       position: absolute;
       cursor: pointer;
-      border-radius: 6px;
-      background: transparent;
-      transition: background 0.25s ease;
-      z-index: 10;
+      border-radius: 8px;
+      z-index: 20;
     }
-    .hotspot:hover { background: rgba(0, 178, 50, 0.08); }
 
-    .hotspot[data-id="parcerias"]   { left: 22.4%; top:  5.2%; width: 27.2%; height: 35.0%; }
-    .hotspot[data-id="credito"]     { left: 39.5%; top: 24.9%; width: 22.9%; height: 28.1%; }
-    .hotspot[data-id="estoque"]     { left: 56.8%; top: 31.2%; width: 29.0%; height: 35.0%; }
-    .hotspot[data-id="acesso"]      { left: 10.9%; top: 42.6%; width: 29.0%; height: 23.3%; }
-    .hotspot[data-id="venda"]       { left: 27.0%; top: 60.2%; width: 29.5%; height: 29.5%; }
-    .hotspot[data-id="performance"] { left: 59.7%; top: 58.5%; width: 33.4%; height: 40.0%; }
+    /* Mesmos bounds das layers */
+    .hotspot[data-id="parcerias"]   { left: 431px;  top:  56px;  width: 534px; height: 378px; }
+    .hotspot[data-id="credito"]     { left: 758px;  top: 269px;  width: 439px; height: 304px; }
+    .hotspot[data-id="estoque"]     { left: 1091px; top: 337px;  width: 595px; height: 389px; }
+    .hotspot[data-id="acesso"]      { left: 209px;  top: 460px;  width: 557px; height: 252px; }
+    .hotspot[data-id="venda"]       { left: 519px;  top: 650px;  width: 566px; height: 391px; }
+    .hotspot[data-id="performance"] { left: 1146px; top: 632px;  width: 658px; height: 433px; }
+
+    .hotspot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: rgba(0, 178, 50, 0);
+      transition: background 0.25s ease;
+    }
+    .hotspot:hover::before { background: rgba(0, 178, 50, 0.08); }
 
     /* ── Tooltips ── */
     .tooltip {
       position: absolute;
       left: 50%;
       transform: translateX(-50%) translateY(8px);
-      background: var(--tooltip-bg);
-      border-left: 4px solid var(--tooltip-border);
+      background: #fff;
+      border-left: 4px solid var(--green);
       border-radius: 8px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
       padding: 16px 20px;
       min-width: 220px;
       max-width: 280px;
@@ -122,6 +91,7 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 100;
     }
+
     .tooltip-top    { bottom: calc(100% + 12px); }
     .tooltip-bottom { top:    calc(100% + 12px); }
 
@@ -132,8 +102,8 @@
       transform: translateX(-50%);
       border: 8px solid transparent;
     }
-    .tooltip-top::after    { top: 100%;    border-top-color: var(--tooltip-bg); }
-    .tooltip-bottom::after { bottom: 100%; border-bottom-color: var(--tooltip-bg); }
+    .tooltip-top::after    { top: 100%;    border-top-color: #fff; }
+    .tooltip-bottom::after { bottom: 100%; border-bottom-color: #fff; }
 
     .hotspot:hover .tooltip {
       opacity: 1;
@@ -177,16 +147,20 @@
 <div id="scale-container">
 <div id="infografico">
 
-  <!-- ── Layers animados de cada plataforma ── -->
-  <div class="platform-layer" data-id="parcerias"   data-delay="0"></div>
-  <div class="platform-layer" data-id="credito"     data-delay="200"></div>
-  <div class="platform-layer" data-id="estoque"     data-delay="400"></div>
-  <div class="platform-layer" data-id="acesso"      data-delay="600"></div>
-  <div class="platform-layer" data-id="venda"       data-delay="800"></div>
-  <div class="platform-layer" data-id="performance" data-delay="1000"></div>
-  <div class="platform-layer" data-id="linhas"      data-delay="1200"></div>
+  <!-- BG + linhas (aparece primeiro) -->
+  <div class="layer" data-id="bg" data-delay="0">
+    <img src="assets2/bg-lines.png" alt="">
+  </div>
 
-  <!-- ── Hotspots interativos (tooltips) ── -->
+  <!-- Plataformas -->
+  <div class="layer" data-id="parcerias"   data-delay="200"><img src="assets2/parcerias-portfolio.png" alt=""></div>
+  <div class="layer" data-id="credito"     data-delay="400"><img src="assets2/credito.png" alt=""></div>
+  <div class="layer" data-id="estoque"     data-delay="600"><img src="assets2/estoque-logistica.png" alt=""></div>
+  <div class="layer" data-id="acesso"      data-delay="800"><img src="assets2/acesso-ao-produtor.png" alt=""></div>
+  <div class="layer" data-id="venda"       data-delay="1000"><img src="assets2/venda-consultiva.png" alt=""></div>
+  <div class="layer" data-id="performance" data-delay="1200"><img src="assets2/perfomance.png" alt=""></div>
+
+  <!-- Hotspots -->
 
   <!-- TOOLTIP: Parcerias & Portifólio -->
   <div class="hotspot" data-id="parcerias">
@@ -267,9 +241,8 @@
   (function () {
     var container = document.getElementById('scale-container');
     var wrapper   = document.getElementById('infografico');
-    var layers    = wrapper.querySelectorAll('.platform-layer');
+    var layers    = wrapper.querySelectorAll('.layer');
 
-    /* ── Responsive scaling ──────────────────────────────────────── */
     function applyScale() {
       var scale = window.innerWidth / 1920;
       wrapper.style.transform = 'scale(' + scale + ')';
@@ -278,10 +251,9 @@
     window.addEventListener('resize', applyScale);
     applyScale();
 
-    /* ── Entrance animation ──────────────────────────────────────── */
     function animateIn() {
       layers.forEach(function (layer) {
-        var delay = parseInt(layer.dataset.delay || 0, 10) + 300;
+        var delay = parseInt(layer.dataset.delay || 0, 10) + 200;
         setTimeout(function () { layer.classList.add('visible'); }, delay);
       });
     }
