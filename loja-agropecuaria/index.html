@@ -144,9 +144,56 @@
       border-radius: 50%;
       background: var(--lime);
     }
+
+    /* ── Nav flutuante ── */
+    #infog-nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12);
+      padding: 6px 12px 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Halcom', Arial, sans-serif;
+      font-size: 12px;
+      color: #2a2b2b;
+    }
+    #infog-nav::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #00b232;
+      flex-shrink: 0;
+    }
+    #infog-nav select {
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2a2b2b;
+      background: transparent;
+      cursor: pointer;
+      padding-right: 4px;
+    }
   </style>
 </head>
 <body>
+
+<div id="infog-nav">
+  <select id="infog-select">
+    <option value="/distribuidor-de-insumos/">Distribuidor de Insumos</option>
+    <option value="/loja-agropecuaria/">Loja Agropecuária</option>
+    <option value="/originacao-comercio-de-graos/">Originação &amp; Comércio de Grãos</option>
+  </select>
+</div>
 
 <div id="tooltip">
   <h4 id="tooltip-title"></h4>
@@ -275,6 +322,16 @@
         tooltip.classList.remove('visible');
       });
     });
+  })();
+
+  // Nav select
+  (function () {
+    var sel = document.getElementById('infog-select');
+    var path = window.location.pathname.replace(/\/?$/, '/');
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === path) { sel.selectedIndex = i; break; }
+    }
+    sel.addEventListener('change', function () { window.location.href = sel.value; });
   })();
 </script>
 
