@@ -331,6 +331,12 @@
       window.location.href = '../' + folder + '/';
     });
   })();
+
+  // Oculta nav via ?nav=0
+  if (new URLSearchParams(window.location.search).get('nav') === '0') {
+    var nav = document.getElementById('infog-nav');
+    if (nav) nav.style.display = 'none';
+  }
 </script>
 
 </body>
