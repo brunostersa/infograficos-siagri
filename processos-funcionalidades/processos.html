@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preview – Processos & Funcionalidades</title>
+  <link rel="stylesheet" href="processos.css">
+  <style>
+    body { background: #f0f4f0; display: flex; align-items: center;
+           justify-content: center; min-height: 100vh; padding: 40px 16px;
+           overflow-x: hidden; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     SEÇÃO — troque os atributos data-* para cada página
+═══════════════════════════════════════════════════════ -->
+<section class="pf-section">
+
+  <!-- Cabeçalhos das colunas -->
+  <div class="pf-col pf-col--left">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Processos</span>
+    </div>
+
+    <!-- Lista de processos — cada item carrega as funcionalidades via data-features -->
+    <ul class="pf-list" role="list">
+
+      <li class="pf-item pf-item--active" tabindex="0"
+          data-features='[
+            "Emissão de notas fiscais integrada ao fiscal",
+            "Controle de pedidos e orçamentos",
+            "Gestão de clientes e histórico de compras",
+            "Integração com estoque em tempo real"
+          ]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Venda e faturamento</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='[
+            "Cadastro e categorização de produtos",
+            "Controle de lotes e validades",
+            "Alertas de estoque mínimo",
+            "Transferência entre filiais"
+          ]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>Estoque e logística</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='[
+            "Crédito rotativo por produtor",
+            "Análise de limite e risco",
+            "Controle de acertos e liquidações",
+            "Integração com contas a receber"
+          ]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Crédito e acertos</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='[
+            "Cadastro de fornecedores e representantes",
+            "Portfólio de produtos negociados",
+            "Histórico de compras e bonificações",
+            "Contratos e campanhas de parceiros"
+          ]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
+          <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Parcerias e portfólio</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='[
+            "DRE e resultados por filial",
+            "Indicadores de margem e giro",
+            "Relatórios de vendas por período",
+            "Painel de metas e performance"
+          ]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Performance e resultados</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- Painel direito — preenchido via JS -->
+  <div class="pf-col pf-col--right" aria-live="polite">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Funcionalidades</span>
+    </div>
+    <ul class="pf-features" role="list"></ul>
+  </div>
+
+</section>
+
+<script src="processos.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════
+   Processos & Funcionalidades — componente reutilizável
+   Variável de cor: --pf-accent (padrão: verde siagri)
+═══════════════════════════════════════════════════ */
+
+.pf-section {
+  --pf-accent:   #00b232;
+  --pf-accent2:  #a5c715;
+  --pf-bg:       #3a7d44;        /* fundo do card */
+  --pf-bg-light: #4a9455;        /* coluna direita / hover */
+  --pf-text:     #fff;
+  --pf-radius:   16px;
+  --pf-gap:      2px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pf-gap);
+  border-radius: var(--pf-radius);
+  overflow: hidden;
+  width: min(780px, 100%);
+  margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,.22);
+  font-family: 'Halcom', Arial, sans-serif;
+}
+
+/* ── Colunas ── */
+.pf-col {
+  background: var(--pf-bg);
+  padding: 0;
+}
+
+.pf-col--right {
+  background: var(--pf-bg-light);
+}
+
+/* ── Cabeçalho de coluna ── */
+.pf-col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px 18px;
+  color: var(--pf-text);
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.pf-col-header svg {
+  flex-shrink: 0;
+  opacity: .9;
+}
+
+/* ── Lista de processos ── */
+.pf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pf-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 24px;
+  color: rgba(255,255,255,.75);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: background .18s ease, color .18s ease;
+  outline: none;
+}
+
+.pf-item:last-child { border-bottom: none; }
+
+.pf-item:hover,
+.pf-item:focus-visible,
+.pf-item--active {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+
+.pf-item__icon {
+  flex-shrink: 0;
+  color: rgba(255,255,255,.6);
+  transition: color .18s ease;
+}
+
+.pf-item:hover .pf-item__icon,
+.pf-item:focus-visible .pf-item__icon,
+.pf-item--active .pf-item__icon {
+  color: var(--pf-accent2);
+}
+
+.pf-item > span {
+  flex: 1;
+}
+
+.pf-item__arrow {
+  flex-shrink: 0;
+  color: rgba(255,255,255,.3);
+  transition: color .18s ease, transform .18s ease;
+}
+
+.pf-item:hover .pf-item__arrow,
+.pf-item:focus-visible .pf-item__arrow,
+.pf-item--active .pf-item__arrow {
+  color: rgba(255,255,255,.7);
+}
+
+@media (min-width: 641px) {
+  .pf-item:hover .pf-item__arrow,
+  .pf-item:focus-visible .pf-item__arrow,
+  .pf-item--active .pf-item__arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* ── Painel de funcionalidades ── */
+.pf-features {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.pf-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 24px;
+  color: rgba(255,255,255,.85);
+  font-size: 13.5px;
+  line-height: 1.45;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  animation: pf-slide-in .22s ease both;
+}
+
+.pf-feature:last-child { border-bottom: none; }
+
+.pf-feature::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none'%3E%3Crect x='2' y='2' width='20' height='20' rx='5' fill='rgba(255,255,255,0.15)'/%3E%3Cpolyline points='6 12 10 16 18 8' stroke='%23a5c715' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@keyframes pf-slide-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Accordion panels são só para mobile — esconde no desktop */
+.pf-accordion-panel { display: none; }
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVO
+══════════════════════════════════════════════════ */
+
+/* Tablet: empilha verticalmente */
+@media (max-width: 640px) {
+  .pf-section {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  /* Esconde coluna direita — funcionalidades ficam inline no accordion */
+  .pf-col--right { display: none; }
+
+  /* Mostra e anima os painéis accordion */
+  .pf-accordion-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+    background: rgba(0,0,0,.12);
+  }
+  .pf-accordion-panel.open { max-height: 600px; }
+
+  /* Seta aponta para baixo por padrão no mobile, vira para cima quando aberto */
+  .pf-item__arrow {
+    transition: color .18s ease, transform .25s ease;
+    transform: rotate(90deg);
+  }
+  .pf-item--active .pf-item__arrow {
+    transform: rotate(270deg);
+    color: rgba(255,255,255,.7);
+  }
+
+  /* Painel inline de funcionalidades por item */
+  .pf-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+    background: rgba(0,0,0,.12);
+  }
+  .pf-accordion-panel.open {
+    max-height: 600px;
+  }
+  .pf-accordion-panel .pf-feature {
+    padding: 11px 20px 11px 36px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    animation: none;
+  }
+  .pf-accordion-panel .pf-feature:last-child { border-bottom: none; }
+}

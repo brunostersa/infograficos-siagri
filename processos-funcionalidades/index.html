@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Processos & Funcionalidades – Siagri</title>
+  <link rel="stylesheet" href="processos.css">
+  <style>
+    body {
+      background: #f0f4f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 60px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    .pf-solution {
+      width: 100%;
+      display: none;
+      justify-content: center;
+    }
+    .pf-solution.active { display: flex; }
+
+    /* ── Nav flutuante (mesmo padrão dos infográficos) ── */
+    #pf-nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12);
+      padding: 6px 12px 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Halcom', Arial, sans-serif;
+      font-size: 12px;
+      color: #2a2b2b;
+      white-space: nowrap;
+    }
+    #pf-nav::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #00b232;
+      flex-shrink: 0;
+    }
+    #pf-nav select {
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2a2b2b;
+      background: transparent;
+      cursor: pointer;
+      padding-right: 4px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Nav switcher -->
+<div id="pf-nav">
+  <select id="pf-select" autocomplete="off">
+    <option value="agribusiness">Siagri Agribusiness</option>
+    <option value="agrimanager">Siagri Agrimanager</option>
+    <option value="essencial">Siagri Essencial</option>
+    <option value="web">Siagri Web</option>
+  </select>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     1. SIAGRI AGRIBUSINESS
+═══════════════════════════════════════ -->
+<div class="pf-solution active" id="sol-agribusiness">
+<section class="pf-section">
+  <div class="pf-col pf-col--left">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Processos</span>
+    </div>
+    <ul class="pf-list" role="list">
+
+      <li class="pf-item pf-item--active" tabindex="0"
+          data-features='["Pedidos de venda integrados, receituário agronômico, precificação de produtos, ponto de vendas (PDV), acompanhamento de relatórios"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Gestão comercial de insumos</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Pedido integrado ao faturamento"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Vendas a campo e negociações</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Contratos de compra, venda e troca, gerados automaticamente"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Operações barter e outras moedas</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Romaneio, pesagem e classificação"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Armazenagem e originação de grãos</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Movimentações geradas no fluxo em conformidade tributária e controle patrimonial"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Rotina fiscal e contábil</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Fluxo de caixa e conciliação bancária"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Gestão financeira da revenda</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+    </ul>
+  </div>
+  <div class="pf-col pf-col--right" aria-live="polite">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Funcionalidades</span>
+    </div>
+    <ul class="pf-features" role="list"></ul>
+  </div>
+</section>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     2. SIAGRI AGRIMANAGER
+═══════════════════════════════════════ -->
+<div class="pf-solution" id="sol-agrimanager">
+<section class="pf-section">
+  <div class="pf-col pf-col--left">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Processos</span>
+    </div>
+    <ul class="pf-list" role="list">
+
+      <li class="pf-item pf-item--active" tabindex="0"
+          data-features='["Controle por área e cultura"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Planejamento da safra</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Gestão de pedidos e fornecedores"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Compra de insumos</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Entradas, saídas e saldo de insumos"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Estoque da fazenda</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Acompanhamento de atividades agrícolas"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Operação no campo</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de manutenção e uso"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Gestão de maquinário</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Custos, resultados e lucratividade"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Fechamento de safra</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Registro de campos de sementes, controle de cooperados e vendas, tratamento de sementes"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Beneficiamento de sementes</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Registro de fardões e pluma, controle de lote e emblocamento, controle de qualidade e contrato de câmbio"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Beneficiamento de algodão</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+    </ul>
+  </div>
+  <div class="pf-col pf-col--right" aria-live="polite">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Funcionalidades</span>
+    </div>
+    <ul class="pf-features" role="list"></ul>
+  </div>
+</section>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     3. SIAGRI ESSENCIAL
+═══════════════════════════════════════ -->
+<div class="pf-solution" id="sol-essencial">
+<section class="pf-section">
+  <div class="pf-col pf-col--left">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Processos</span>
+    </div>
+    <ul class="pf-list" role="list">
+
+      <li class="pf-item pf-item--active" tabindex="0"
+          data-features='["Gestão de contas a pagar e receber, emissão de documentos, renegociação de títulos, movimentação de caixa e bancos, conciliação bancária e fluxo de caixa atualizado"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Gestão administrativa e financeira</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Emissão de NF-e e CT-e (em conformidade fiscal), emissão de inventário, geração e exportação de Sped fiscal"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Gestão fiscal</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de estoque em tempo real por lote e validade"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Gestão de estoque</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de fornecedores, pedidos, recebimento e custo de mercadorias"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Gestão de vendas e compras</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Administração de negociações e condições comerciais"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Gestão de contratos</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Emissão de receita e fixa de emergência, controle de ARTs"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Receituário Agronômico</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+    </ul>
+  </div>
+  <div class="pf-col pf-col--right" aria-live="polite">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Funcionalidades</span>
+    </div>
+    <ul class="pf-features" role="list"></ul>
+  </div>
+</section>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     4. SIAGRI WEB
+═══════════════════════════════════════ -->
+<div class="pf-solution" id="sol-web">
+<section class="pf-section">
+  <div class="pf-col pf-col--left">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Processos</span>
+    </div>
+    <ul class="pf-list" role="list">
+
+      <li class="pf-item pf-item--active" tabindex="0"
+          data-features='["Gestão integrada do negócio"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Estruturação da revenda</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Central de pedidos de venda"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Formação da carteira de clientes</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de vendas e negociações"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Rotina comercial</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de comissões"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Gestão do time de vendas</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle financeiro da operação"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Administração financeira</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Relatórios e análise de resultados"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Tomada de decisão</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Receituário agronômico integrado"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Atendimento técnico a campo</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Gestão de compras e pedidos"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Negociação com fornecedores</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Geração automática de contratos"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Operações barter e em outras moedas</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+      <li class="pf-item" tabindex="0"
+          data-features='["Controle de operações comerciais"]'>
+        <svg class="pf-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Organização fiscal</span>
+        <svg class="pf-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </li>
+
+    </ul>
+  </div>
+  <div class="pf-col pf-col--right" aria-live="polite">
+    <div class="pf-col-header">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Funcionalidades</span>
+    </div>
+    <ul class="pf-features" role="list"></ul>
+  </div>
+</section>
+</div>
+
+
+<script src="processos.js"></script>
+<script>
+  // Switcher de soluções
+  var select = document.getElementById('pf-select');
+  var solutions = document.querySelectorAll('.pf-solution');
+
+  select.addEventListener('change', function () {
+    solutions.forEach(function (el) { el.classList.remove('active'); });
+    var target = document.getElementById('sol-' + select.value);
+    if (target) {
+      target.classList.add('active');
+      // reinicializa o componente da solução ativa
+      var firstItem = target.querySelector('.pf-item');
+      if (firstItem) firstItem.click();
+    }
+  });
+
+  // Marca a opção correta se vier por querystring (?sol=agrimanager)
+  var params = new URLSearchParams(window.location.search);
+  var solParam = params.get('sol');
+  if (solParam) {
+    select.value = solParam;
+    select.dispatchEvent(new Event('change'));
+  }
+</script>
+</body>
+</html>
