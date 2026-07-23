@@ -425,6 +425,12 @@
     select.value = solParam;
     select.dispatchEvent(new Event('change'));
   }
+
+  // Oculta nav via ?nav=0
+  if (params.get('nav') === '0') {
+    var nav = document.getElementById('pf-nav');
+    if (nav) nav.style.display = 'none';
+  }
 </script>
 </body>
 </html>

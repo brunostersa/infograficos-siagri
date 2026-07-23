@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemplo de Embed – Processos & Funcionalidades</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+    h1 { color: #2a2b2b; margin-bottom: 10px; }
+    .subtitle { color: #666; margin-bottom: 30px; font-size: 14px; }
+
+    .section { background: #fff; border-radius: 8px; padding: 30px; margin-bottom: 40px; }
+    .section h2 { color: #00b232; margin-bottom: 20px; font-size: 18px; }
+    .section p { color: #555; line-height: 1.6; margin-bottom: 15px; }
+
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 20px 0;
+    }
+
+    .embed-preview {
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      height: 600px;
+      margin: 30px 0;
+      background: #f9f9f9;
+    }
+
+    .param-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    .param-table thead { background: #f0f0f0; }
+    .param-table th, .param-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+    .param-table code { background: #fff; }
+
+    .example-urls { background: #f9f9f9; padding: 15px; border-radius: 6px; margin: 20px 0; }
+    .example-urls p { margin: 8px 0; color: #555; font-size: 13px; }
+    .example-urls a { color: #00b232; text-decoration: none; }
+    .example-urls a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>📊 Embed: Processos & Funcionalidades Siagri</h1>
+  <p class="subtitle">Guia prático para inserir o componente em seu site via iframe</p>
+
+  <!-- Seção 1: Sobre -->
+  <div class="section">
+    <h2>O que é este embed?</h2>
+    <p>O componente <strong>Processos & Funcionalidades</strong> permite que visitantes de seu site explorem os processos e funcionalidades de cada solução Siagri (Agribusiness, Agrimanager, Essencial, Web) de forma interativa.</p>
+    <p>Você pode embutir este componente em qualquer página usando um iframe e customizá-lo com parâmetros de URL.</p>
+  </div>
+
+  <!-- Seção 2: Copiar o código -->
+  <div class="section">
+    <h2>📋 Como usar</h2>
+    <p>Copie e cole o código abaixo em sua página HTML:</p>
+
+    <div class="code-block">&lt;iframe
+  src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness"
+  width="100%"
+  height="600"
+  frameborder="0"
+  allow="fullscreen"
+  style="border-radius: 8px; border: 1px solid #e0e0e0;"&gt;
+&lt;/iframe&gt;</div>
+  </div>
+
+  <!-- Seção 3: Parâmetros -->
+  <div class="section">
+    <h2>⚙️ Parâmetros de URL</h2>
+
+    <table class="param-table">
+      <thead>
+        <tr>
+          <th>Parâmetro</th>
+          <th>Valores</th>
+          <th>Descrição</th>
+          <th>Exemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>sol</code></td>
+          <td>agribusiness<br>agrimanager<br>essencial<br>web</td>
+          <td>Define qual solução é exibida por padrão</td>
+          <td><code>?sol=essencial</code></td>
+        </tr>
+        <tr>
+          <td><code>nav</code></td>
+          <td>0</td>
+          <td>Esconde a navegação/seletor (útil para embeds)</td>
+          <td><code>?nav=0</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Seção 4: Exemplos -->
+  <div class="section">
+    <h2>🔗 URLs de Exemplo</h2>
+
+    <div class="example-urls">
+      <p><strong>Agribusiness (padrão):</strong><br>
+      <a href="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness" target="_blank">
+        https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness
+      </a></p>
+
+      <p><strong>Agrimanager:</strong><br>
+      <a href="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agrimanager" target="_blank">
+        https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agrimanager
+      </a></p>
+
+      <p><strong>Essencial:</strong><br>
+      <a href="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=essencial" target="_blank">
+        https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=essencial
+      </a></p>
+
+      <p><strong>Web:</strong><br>
+      <a href="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=web" target="_blank">
+        https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=web
+      </a></p>
+
+      <p><strong>Sem navegação (apenas componente):</strong><br>
+      <a href="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness&nav=0" target="_blank">
+        https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness&nav=0
+      </a></p>
+    </div>
+  </div>
+
+  <!-- Seção 5: Exemplos de Código -->
+  <div class="section">
+    <h2>💻 Exemplos de Código</h2>
+
+    <h3 style="color: #2a2b2b; margin: 20px 0 10px 0; font-size: 14px;">Versão Responsiva (recomendado)</h3>
+    <div class="code-block">&lt;iframe
+  src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness"
+  width="100%"
+  height="600"
+  frameborder="0"
+  allow="fullscreen"
+  style="border-radius: 8px; border: 1px solid #e0e0e0;"&gt;
+&lt;/iframe&gt;</div>
+
+    <h3 style="color: #2a2b2b; margin: 20px 0 10px 0; font-size: 14px;">Sem Navegação</h3>
+    <div class="code-block">&lt;iframe
+  src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=web&nav=0"
+  width="100%"
+  height="600"
+  frameborder="0"
+  allow="fullscreen"
+  style="border-radius: 8px; border: 1px solid #e0e0e0;"&gt;
+&lt;/iframe&gt;</div>
+
+    <h3 style="color: #2a2b2b; margin: 20px 0 10px 0; font-size: 14px;">Com Altura Fixa</h3>
+    <div class="code-block">&lt;iframe
+  src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=essencial"
+  width="100%"
+  height="800"
+  frameborder="0"
+  allow="fullscreen"
+  style="border-radius: 8px; border: 1px solid #e0e0e0;"&gt;
+&lt;/iframe&gt;</div>
+  </div>
+
+  <!-- Seção 6: Preview -->
+  <div class="section">
+    <h2>👁️ Preview</h2>
+    <p>Selecione uma solução abaixo para ver o preview:</p>
+
+    <div style="margin: 20px 0;">
+      <button onclick="changePreview('agribusiness')" style="padding: 10px 16px; margin-right: 8px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #2a2b2b;">Agribusiness</button>
+      <button onclick="changePreview('agrimanager')" style="padding: 10px 16px; margin-right: 8px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #2a2b2b;">Agrimanager</button>
+      <button onclick="changePreview('essencial')" style="padding: 10px 16px; margin-right: 8px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #2a2b2b;">Essencial</button>
+      <button onclick="changePreview('web')" style="padding: 10px 16px; cursor: pointer; border: 1px solid #ddd; border-radius: 6px; background: #fff; color: #2a2b2b;">Web</button>
+    </div>
+
+    <iframe
+      id="preview-iframe"
+      src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness"
+      width="100%"
+      height="600"
+      frameborder="0"
+      allow="fullscreen"
+      class="embed-preview"
+      style="border: 1px solid #e0e0e0;">
+    </iframe>
+  </div>
+
+  <!-- Seção 7: Responsividade -->
+  <div class="section">
+    <h2>📱 Responsividade</h2>
+    <p>O embed é totalmente responsivo. Use <code>width="100%"</code> para ocupar toda a largura do container pai.</p>
+    <p>Para otimizar a altura em dispositivos móveis, você pode usar JavaScript:</p>
+
+    <div class="code-block">// Ajustar altura do iframe em mobile
+const iframe = document.getElementById('embed-iframe');
+if (window.innerWidth < 768) {
+  iframe.height = '800';
+} else {
+  iframe.height = '600';
+}</div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; padding: 40px 0; color: #999; font-size: 13px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+    <p>© 2026 Siagri. Todos os direitos reservados.</p>
+  </div>
+</div>
+
+<script>
+function changePreview(sol) {
+  const iframe = document.getElementById('preview-iframe');
+  iframe.src = `https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=${sol}`;
+}
+</script>
+
+</body>
+</html>
