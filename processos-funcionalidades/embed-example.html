@@ -103,13 +103,23 @@
           Remover borda e raio
         </label>
       </div>
+
+      <div style="margin-bottom: 0;">
+        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #2a2b2b;">Altura:</label>
+        <select id="height-select" onchange="updateCode()" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; width: 100%; max-width: 300px;">
+          <option value="100vh">100% (Tela cheia)</option>
+          <option value="600px">600px</option>
+          <option value="800px">800px</option>
+          <option value="1000px">1000px</option>
+        </select>
+      </div>
     </div>
 
     <p style="margin-top: 20px; margin-bottom: 10px;">Copie o código abaixo:</p>
     <div class="code-block" id="code-output" style="cursor: pointer; position: relative;" onclick="copyCode()">&lt;iframe
   src="https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=agribusiness"
   width="100%"
-  height="600px"
+  height="100vh"
   style="border:none; display:block;"&gt;
 &lt;/iframe&gt;</div>
     <p style="font-size: 12px; color: #666; margin-top: 10px;">💡 Clique no código para copiar</p>
@@ -262,6 +272,7 @@ function updateCode() {
   const sol = document.getElementById('sol-select').value;
   const hideNav = document.getElementById('hide-nav').checked;
   const hideBorder = document.getElementById('hide-border').checked;
+  const height = document.getElementById('height-select').value;
 
   let url = `https://brunostersa.github.io/infograficos-siagri/processos-funcionalidades/?sol=${sol}`;
   if (hideNav) url += '&nav=0';
@@ -277,7 +288,7 @@ function updateCode() {
   const code = `&lt;iframe
   src="${url}"
   width="100%"
-  height="600px"
+  height="${height}"
   ${style}&gt;
 &lt;/iframe&gt;`;
 
@@ -286,6 +297,7 @@ function updateCode() {
   // Atualizar preview
   const iframe = document.getElementById('preview-iframe');
   iframe.src = url;
+  iframe.height = height === '100vh' ? '600' : height.replace('px', '');
 }
 
 function copyCode() {
