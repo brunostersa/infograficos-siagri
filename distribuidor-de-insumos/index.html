@@ -185,6 +185,79 @@
       cursor: pointer;
       padding-right: 4px;
     }
+
+    /* ── Versão mobile (cards do Figma, 360px de largura) ── */
+    #mobile-view { display: none; }
+    @media (max-width: 767px) {
+      html, body { overflow: auto; height: auto; }
+      #scale-container, #tooltip { display: none; }
+      #mobile-view {
+        --u: calc(min(100vw, 480px) / 360);
+        display: block;
+        width: min(100vw, 480px);
+        margin: 0 auto;
+        padding: 52px 0 24px;
+      }
+      body.no-nav #mobile-view { padding-top: 0; }
+      .m-card {
+        position: relative;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+      .m-card.visible { opacity: 1; transform: none; }
+      .m-card img { display: block; width: 100%; height: auto; }
+      .m-card[data-ref] { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+      .m-card[data-ref]::after {
+        content: '+';
+        position: absolute;
+        left: calc(var(--u) * 318);
+        top: calc(var(--u) * (var(--rb) - 12));
+        width: calc(var(--u) * 24);
+        height: calc(var(--u) * 24);
+        border-radius: 50%;
+        background: #fff;
+        color: var(--green);
+        font: 700 calc(var(--u) * 18)/calc(var(--u) * 24) Arial, sans-serif;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,.18);
+        transition: transform 0.25s ease;
+      }
+      .m-card.open::after { transform: rotate(45deg); }
+      .m-panel {
+        margin: 0 calc(var(--u) * 30);
+        max-height: 0;
+        overflow: hidden;
+        background: #fff;
+        border-left: 4px solid var(--green);
+        box-shadow: 0 8px 24px rgba(0,0,0,.10);
+        transition: max-height 0.3s ease, margin 0.3s ease;
+      }
+      .m-card.open + .m-panel {
+        margin-top: calc(var(--u) * (var(--rb) - var(--h)));
+        margin-bottom: calc(var(--u) * (var(--h) - var(--rb)));
+      }
+      .m-panel ul { list-style: none; padding: 10px 18px 12px; }
+      .m-panel li {
+        font-family: 'Halcom', Arial, sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.4;
+        padding: 6px 0 6px 16px;
+        position: relative;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .m-panel li:last-child { border-bottom: none; }
+      .m-panel li::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 50%;
+        transform: translateY(-50%);
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--lime);
+      }
+    }
   </style>
 </head>
 <body>
@@ -220,6 +293,16 @@
   <div class="layer" data-id="performance" data-delay="1000"><img src="perfomance.png" alt=""></div>
 
 </div>
+</div>
+
+<!-- ── MOBILE: cards empilhados (Figma "Infográfico - Mobile") ── -->
+<div id="mobile-view">
+  <div class="m-card" style="--h:153;--rb:133"><img src="mobile/card-01.png" alt="Parcerias &amp; Portfólio"></div>
+  <div class="m-card" style="--h:134;--rb:119"><img src="mobile/card-02.png" alt="Acesso ao Produtor"></div>
+  <div class="m-card" style="--h:139;--rb:124"><img src="mobile/card-03.png" alt="Crédito"></div>
+  <div class="m-card" style="--h:144;--rb:124"><img src="mobile/card-04.png" alt="Venda Consultiva"></div>
+  <div class="m-card" style="--h:134;--rb:119"><img src="mobile/card-05.png" alt="Estoque &amp; Logística"></div>
+  <div class="m-card" style="--h:145;--rb:124"><img src="mobile/card-06.png" alt="Performance &amp; Resultados"></div>
 </div>
 
 <script>
@@ -311,7 +394,46 @@
   if (new URLSearchParams(window.location.search).get('nav') === '0') {
     var nav = document.getElementById('infog-nav');
     if (nav) nav.style.display = 'none';
+    document.body.classList.add('no-nav');
   }
+</script>
+
+<script>
+  /* Versão mobile: anima os cards e abre a lista do hotspot correspondente ao tocar */
+  (function () {
+    var view = document.getElementById('mobile-view');
+    if (!view) return;
+    var cards = view.querySelectorAll('.m-card');
+    cards.forEach(function (card, i) {
+      setTimeout(function () { card.classList.add('visible'); }, 150 + i * 90);
+      var ref = card.dataset.ref;
+      var hs  = ref && document.querySelector('.hotspot[data-id="' + ref + '"]');
+      if (!hs) { card.removeAttribute('data-ref'); return; }
+      var panel = document.createElement('div');
+      panel.className = 'm-panel';
+      var ul = document.createElement('ul');
+      hs.dataset.items.split('|').forEach(function (item) {
+        var li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      panel.appendChild(ul);
+      card.insertAdjacentElement('afterend', panel);
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-expanded', 'false');
+      card.tabIndex = 0;
+      function toggle() {
+        var open = !card.classList.contains('open');
+        card.classList.toggle('open', open);
+        card.setAttribute('aria-expanded', open);
+        panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+      }
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  })();
 </script>
 
 </body>
