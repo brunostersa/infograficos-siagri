@@ -170,7 +170,8 @@
     /* ── Versão mobile (cards do Figma, 360px de largura) ── */
     #mobile-view { display: none; }
     @media (max-width: 767px) {
-      html, body { overflow: auto; height: auto; }
+      html, body { overflow: auto; height: auto; scrollbar-width: none; }
+      html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
       #scale-container, #tooltip { display: none; }
       #mobile-view {
         --u: calc(min(100vw, 480px) / 360);
@@ -436,6 +437,23 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
     });
+
+    /* Embed: informa a altura ao site pai para o iframe crescer sem barra de rolagem */
+    if (window.parent !== window) {
+      var mq = window.matchMedia('(max-width: 767px)');
+      var last = 0;
+      var postHeight = function () {
+        var h = mq.matches ? Math.ceil(view.getBoundingClientRect().height) : 0;
+        if (h === last) return;
+        last = h;
+        window.parent.postMessage({ type: 'siagri-infografico-altura', height: h }, '*');
+      };
+      if (window.ResizeObserver) new ResizeObserver(postHeight).observe(view);
+      view.addEventListener('transitionend', postHeight);
+      window.addEventListener('resize', postHeight);
+      window.addEventListener('load', postHeight);
+      postHeight();
+    }
   })();
 </script>
 
